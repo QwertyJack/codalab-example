@@ -13,25 +13,19 @@ Codalab 介绍:
 - Docker (请参考 [Insatll Docker CE](https://docs.docker.com/install/))
 
 以下将以 [Building a Semantic Parser Overnight](https://worksheets.codalab.org/worksheets/0x269ef752f8c344a28383240f7bb2be9c) 为例。
+其中 `worksheet_spec`:
+
+- `name`: sempre-overnight-acl2015c
+- `uuid`: 0x269ef752f8c344a28383240f7bb2be9c
+
+二者完全等价。以下全部使用 `uuid` 作为 `worksheet_spec`
 
 ## 初始化
 
 - 查看 worksheets 信息: `cl p 0x269ef752f8c344a28383240f7bb2be9c`
-- 手动添加所有依赖的 uuid, 例如:
-
-```sh
-$ cat deps.txt
-0xc8664b6bbc6d4b1c910dda0d4e15f40b
-0xbc64a5bc37294e8398f4521456b69ed4
-0x9053b5b245f54d29b5fec32af75995f6
-0x3e57c0a4b6e544b8b2c732b5807ebc96
-0x40d0664a7a3c4afc853e0509e546c6c4
-0x7cff4434e6ee412b94eb602e984d1d98
-0x524dadd68c5244aaabf5374bd1fc162b
-```
-
-- 下载: `for i in $(cat deps.txt); do cl down $i; done`
-- 本例中`run` 是需要执行权限的，因此需要: `chmod +x run`
+- 列出依赖：`cl ls -w 0x269ef752f8c344a28383240f7bb2be9c`
+- 下载依赖: `for i in $(cl ls -uw 0x269ef752f8c344a28383240f7bb2be9c); do cl down $i; done`
+- 本例中 `./run` 是需要执行权限的，因此需要: `chmod +x run`
 
 ## 运行测试
 
